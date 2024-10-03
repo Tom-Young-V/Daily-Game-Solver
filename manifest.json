@@ -1,0 +1,49 @@
+{
+	"manifest_version": 3,
+	"name": "Daily Games Helper",
+	"description": "Solve games like Wordle, Connections, NYT Mini, Waffle.",
+	"version": "1.0",
+
+	"icons": {
+		"16": "Images/waffle-16.png",
+		"32": "Images/waffle-32.png",
+		"48": "Images/waffle-48.png",
+		"128": "Images/waffle-128.png"
+	},
+
+	"background": {
+		"service_worker": "background.js"
+	},
+
+	"action": {
+		"default_icon": {
+			"16": "Images/waffle-16.png",
+			"32": "Images/waffle-32.png",
+			"48": "Images/waffle-48.png",
+			"128": "Images/waffle-128.png"
+		}
+	},
+
+	"permissions": ["webNavigation", "activeTab", "commands"],
+
+	"commands": {
+		"solvePuzzle": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+9",
+				"mac": "Command+Shift+9"
+			},
+			"description": "Activate Solver"
+		}
+	},
+
+	"content_scripts": [
+		{
+			"matches": ["https://wafflegame.net/*"],
+			"js": ["Scripts/waffleContent.js"]
+		},
+		{
+			"matches": ["https://squaredle.app/*"],
+			"js": ["Scripts/squaredleContent.js"]
+		}
+	]
+}
